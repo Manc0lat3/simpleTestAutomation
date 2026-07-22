@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+dependencies {
+
+    // Selenium
+    implementation 'org.seleniumhq.selenium:selenium-java:4.30.0'
+
+    // Cucumber
+    testImplementation 'io.cucumber:cucumber-java:7.14.0'
+    testImplementation 'io.cucumber:cucumber-junit:7.14.0'
+
+    // JUnit 4
+    testImplementation 'junit:junit:4.13.2'
+
+    // IA
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.1'
+}
+
+test {
+    useJUnit()
+
+    include '**/Runner.class'
+
+    testLogging {
+        events "passed", "failed", "skipped"
+    }
+}
